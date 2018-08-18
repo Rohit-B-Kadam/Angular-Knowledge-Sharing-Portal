@@ -8,4 +8,10 @@
     background-color: #0c0b0b;
     text-align: right;
     margin-top: 50px;
+    z-index: 5;
+}
+
+.mylink 
+{
+  color: #ccffcc;
 }

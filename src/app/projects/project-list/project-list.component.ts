@@ -43,7 +43,7 @@ export class ProjectListComponent implements OnInit, OnDestroy
   // Listener to add new project
   onNewProject() 
   {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(['new'], {relativeTo: this.route , fragment: 'addOrUpdate'});
   }
 
  

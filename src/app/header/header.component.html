@@ -4,31 +4,41 @@
   </h1>
 </div>
 
-<nav class="navbar navbar-default sticky">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand"><span class="companyName">Marvellous Groups</span></a>
-    </div>
+    <a class="navbar-brand companyName" href="#">
+      Marvellous Groups
+    </a>
 
-    <div class="collapse navbar-collapse">
-      
-      <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/projects">Projects</a></li>
-        <li routerLinkActive="active"><a routerLink="/book-list">List of Prerequisite</a></li>
-        <li routerLinkActive="active"><a routerLink="/aboutus">About Us</a></li>
-      </ul>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
-          <a style="cursor: pointer;" class="dropdown-toggle" role="button">
-            Manage Projects <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a style="cursor: pointer;">Save Data</a></li>
-            <li><a style="cursor: pointer;">Fetch Data</a></li>
-          </ul>
+
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item" routerLinkActive="active" (click)="toggleNavbar()">
+          <a class="nav-link" routerLink="/projects">Projects</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active" (click)="toggleNavbar()">
+          <a class="nav-link" routerLink="/book-list">List of Prerequisite</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active" (click)="toggleNavbar()">
+          <a class="nav-link" routerLink="/aboutus">About Us</a>
         </li>
       </ul>
+
+      <!-- Dropdown menu using ngbootstrap -->
+      <div ngbDropdown class="d-inline-block profileMenu" >
+        <button class="btn btn-dark profileMenu" id="dropdownBasic1" ngbDropdownToggle>Rohit Kadam</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item" (click)="toggleNavbar()">Profile</button>
+          <button class="dropdown-item" (click)="toggleNavbar()">Logout</button>
+        </div>
+      </div>
 
     </div>
   </div>

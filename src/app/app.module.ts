@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// ngBootstrap
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
+// Component 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -19,6 +24,7 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
 import { ProjectService } from './projects/project.service';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +47,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
   ],
   providers: [BookShoppingListService, ProjectService],
   bootstrap: [AppComponent]

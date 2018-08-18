@@ -1,37 +1,66 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { ProjectService } from '../project.service';
 
+/** Selector **/
 @Component({
   selector: 'app-project-edit',
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.css']
 })
-export class ProjectEditComponent implements OnInit 
-{
-  id: number;
-  editMode = false;
-  proForm: FormGroup;
 
-  constructor(private route: ActivatedRoute,
-              private projectService: ProjectService,
-              private router: Router) {
+/** Class */
+export class ProjectEditComponent implements OnInit {
+  
+  //Property
+  id: number;
+  public editMode = false;
+  proForm: FormGroup;
+  private fragment: string;
+  private innerWidth: any;
+
+  //Constructor
+  constructor(  private route: ActivatedRoute,
+                private projectService: ProjectService,
+                private router: Router
+              ) 
+  {
+    // Focus on this component (use only on device screen less than 720)
+    router.events.subscribe(s => {
+      if (s instanceof NavigationEnd) {
+        const tree = router.parseUrl(router.url);
+        if (tree.fragment && this.innerWidth <= 720) {
+          const element = document.querySelector("#" + tree.fragment);
+          if (element) { element.scrollIntoView(true); }
+        }
+      }
+    });
+
   }
 
+  // Get Device size (If you wanna keep it updated on resize)
+  @HostListener('window:resize', ['$event']) onResize(event) { this.innerWidth = window.innerWidth; }
+
   ngOnInit() {
+
+    // Filling reduired data from URL
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
-          this.editMode = params['id'] != null;
-          this.initForm();
+          this.id = +params['id'];  // get project id
+          this.editMode = params['id'] != null; // check if the component is open for edit or create new project
+          this.initForm();  // Initializing Form
         }
       );
+    
+    // To Get innerwidth size of device
+    this.innerWidth = window.innerWidth;
   }
 
-  onSubmit() 
+
+  public onSubmit(): void 
   {
     if (this.editMode) 
     {
@@ -41,11 +70,12 @@ export class ProjectEditComponent implements OnInit
     {
       this.projectService.addProject(this.proForm.value);
     }
-    
+
     this.onCancel();
   }
 
-  onAddBook() 
+  // when user click 'add Prerequisite for Project' button
+  public onAddBook() 
   {
     (<FormArray>this.proForm.get('Books')).push(
       new FormGroup({
@@ -58,6 +88,7 @@ export class ProjectEditComponent implements OnInit
     );
   }
 
+  // when user click 'Remove' button
   onDeleteBook(index: number) 
   {
     (<FormArray>this.proForm.get('Books')).removeAt(index);
@@ -65,9 +96,10 @@ export class ProjectEditComponent implements OnInit
 
   onCancel() 
   {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
+  // Init Form
   private initForm() 
   {
     let proName = '';
@@ -75,8 +107,8 @@ export class ProjectEditComponent implements OnInit
     let proDescription = '';
     let proBooks = new FormArray([]);
 
-    if (this.editMode) 
-    {
+    // If this component is open for update existing project
+    if (this.editMode) {
       const pro = this.projectService.getProject(this.id);
       proName = pro.name;
       proImagePath = pro.imagePath;
