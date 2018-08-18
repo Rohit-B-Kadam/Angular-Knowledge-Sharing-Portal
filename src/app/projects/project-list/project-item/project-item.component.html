@@ -1,19 +1,26 @@
-<a
-  style="cursor: pointer;"
-  [routerLink]="[index]"
-  routerLinkActive="active"
-  class="list-group-item clearfix">
+<div class="list-group">
 
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ pro.name }}</h4>
-    <p class="list-group-item-text">{{ pro.description }}</p>
-  </div>
-  
-  <span class="pull-right">
-        <img
-          [src]="pro.imagePath"
-          alt="{{ pro.name }}"
-          class="img-thumbnail"
-          style="max-height: 50px; max-width: 50px;">
-  </span>
-</a>
+    <a  class="list-group-item list-group-item-action flex-column align-items-start" 
+        [routerLink]="[index]"
+        fragment="projectDetail"
+        routerLinkActive="active"
+        >
+      
+      <!--Project Name-->
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="mb-1">{{ pro.name }}</h4>
+      </div>
+      
+      <!-- Project Description-->
+      <p class="mb-1">{{ pro.description }}</p>
+
+      <!-- Project Image -->
+      <span class="d-flex flex-row-reverse">
+          <img
+            [src]="pro.imagePath"
+            alt="{{ pro.name }}"
+            class="img-thumbnail"
+            style="max-height: 50px;">
+    </span>
+    </a>
+</div>
