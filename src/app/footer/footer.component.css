@@ -1,15 +1,33 @@
 /* Set the fixed height of the footer here */
 .footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
-    height: 50px; /* Set the fixed height of the footer here */
-    line-height: 50px; /* Vertically center the text there */
     background-color: #0c0b0b;
-    text-align: right;
-    margin-top: 50px;
-    z-index: 5;
+    height: 50px; /* Set the fixed height of the footer here */
+    vertical-align: middle;
+
 }
+
+@media only screen and (max-width: 2000px) 
+{
+    .footer{
+      bottom: 0;
+      text-align: right;
+      position: fixed;
+      z-index: 5;
+      line-height: 50px; /* Vertically center the text there */
+    }
+}
+
+@media only screen and (max-width: 750px) 
+{
+  .footer{
+    text-align: center;
+    position:relative;
+    line-height: 35px; /* Vertically center the text there */
+    margin-bottom: 0%;
+  }
+}
+
 
 .mylink 
 {
