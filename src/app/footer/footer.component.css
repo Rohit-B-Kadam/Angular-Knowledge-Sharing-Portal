@@ -23,7 +23,7 @@
   .footer{
     text-align: center;
     position:relative;
-    line-height: 35px; /* Vertically center the text there */
+    line-height: 32px; /* Vertically center the text there */
     margin-bottom: 0%;
   }
 }
