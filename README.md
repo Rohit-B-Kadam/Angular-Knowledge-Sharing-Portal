@@ -9,7 +9,7 @@ __Description:__
 - UI is design using Bootstrap.
 - All the basic and advance concept of Angular are use like ICC (Inter component communication) , Services , Dependence Injection etc.
 - Website is fully responsive on desktop as well as mobile.
-- I have use firebase to host my projection
+- I have use firebase hosting service to host this project. [link](https://rohit-knowledge-sharing-portal.firebaseapp.com)
 
 ---
 
