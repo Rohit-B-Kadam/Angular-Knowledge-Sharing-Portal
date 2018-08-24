@@ -15,7 +15,9 @@ __Description:__
 
 ## Technique or Technologies used in this project
 
-- All the basic Angular concept
+- All the basic Angular concept like Event binding , property binding etc
+- Template Driven Form
+- Reactive Form
 - Service (dependence injection)
 - Routing
 - Inter component cummuication
